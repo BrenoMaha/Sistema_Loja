@@ -47,11 +47,50 @@ class menu:
         )
         self.terceira_opcao = CTkButton(
             master=self.frame_menu,
-            text='Cadastrar cliente',
+            text='Cadastrar um cliente',
             font=('comic sans',17),
             width=475
         ).grid(
             row=2,column=0,sticky='we',pady=(0,1)
+        )
+        self.quarta_opcao = CTkButton(
+            master=self.frame_menu,
+            text='Alterar dados de cliente',
+            font=('comic sans',17),
+            width=475
+        ).grid(
+            row=3,column=0,sticky='we',pady=(0,1)
+        )
+        self.quinta_opcao = CTkButton(
+            master=self.frame_menu,
+            text='Excluir um cliente',
+            font=('comic sans',17),
+            width=475
+        ).grid(
+            row=4,column=0,sticky='we',pady=(0,1)
+        )
+        self.sexta_opcao = CTkButton(
+            master=self.frame_menu,
+            text='Cadastrar Produto',
+            font=('comic sans',17),
+            width=475
+        ).grid(
+            row=4,column=0,sticky='we',pady=(0,1)
+        )
+        self.setima_opcao = CTkButton(
+            master=self.frame_menu,
+            text='Cadastrar venda',font=('comic sans',17),
+            width=475
+        ).grid(
+            row=5,column=0,sticky='we',pady=(0,1)
+        )
+        self.oitava_opcao = CTkButton(
+            master=self.frame_menu,
+            text='Consultar estoque',
+            font=('comic sans',17),
+            width=475
+        ).grid(
+            row=6,column=0,sticky='we',pady=(0,1)
         )
 
 
