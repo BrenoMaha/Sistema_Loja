@@ -1,6 +1,5 @@
 from customtkinter import *
 from database.cliente_repository import cadastrar_funcionario
-from tkinter import messagebox
 
 
 
@@ -48,25 +47,6 @@ def abrir_tela_cadastro(login_window):
     CTkButton(
         master=cadastro,
         text='Confirmar cadastro',
-        command=lambda: cadastrar_funcionario(email_login.get(),senha_var.get())
+        command=lambda: cadastrar_funcionario(email_login.get(),senha_var.get()) 
+        
     ).grid(row=5,columnspan=4)
-
-
-    def confirmacao_cadastro():
-        pass
-    
-
-    
-
-    
-    
-
-
-    
-        
-        
-
-
-    
-
-

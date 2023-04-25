@@ -1,4 +1,3 @@
-
 from customtkinter import * 
 
 class menu:

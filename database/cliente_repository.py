@@ -1,4 +1,5 @@
 from database.conexao import *
+from tkinter import messagebox
 
 
 
@@ -9,6 +10,7 @@ def cadastrar_funcionario(usuario: str, senha: str):
         values ('{usuario}','{senha}')        
         '''
         cursor.execute(sql_query)
+        messagebox.showinfo("Sucesso!", "Cadastro realizado com sucesso")
     conx.commit()
 
 
