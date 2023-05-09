@@ -1,7 +1,8 @@
 from customtkinter import * 
 
 class menu:
-    def __init__(self) -> None:
+    def abrir_menu(self) -> None:
+        
         self.menu = CTk()
         self.menu.resizable(False,False)
         self.menu.title('Menu')

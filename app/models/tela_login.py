@@ -2,6 +2,7 @@ from customtkinter import *
 from models.cadastro import abrir_tela_cadastro
 from database.conexao import *
 from tkinter import messagebox
+from models.menu import *
 
 
 
@@ -135,10 +136,13 @@ class LoginWindow:
         self.usuario = self.entrada_login.get()
         self.senha = self.entrada_senha.get()
         if self.validar_login(self.usuario, self.senha):
-        # fazer login
+        
             messagebox.showinfo("Sucesso!", "Login realizado com sucesso")
+            self.login_frame.pack_forget()
+            menu.abrir_menu()
+            
         else:
-        # exibir mensagem de erro
+        
             messagebox.showerror("Erro", "Usuário ou senha inválidos")
 
 
