@@ -1,5 +1,7 @@
 from customtkinter import *
 from models.cadastro import abrir_tela_cadastro
+from database.conexao import *
+from tkinter import messagebox
 
 
 
@@ -68,14 +70,15 @@ class LoginWindow:
         variable=self.botao_mostrar_senha, 
         onvalue=1,
         offvalue=0, 
-        command=self.mostrar_ou_ocultar_senha).grid(
+        command=self.mostrar_ou_ocultar_senha()).grid(
         row=4,
         column=1, 
         pady=(10, 0))
 
         CTkButton(
         self.login_frame, 
-        text='Login').grid(
+        text='Login',
+        command=lambda: self.fazer_login()).grid(
         row=5, 
         columnspan=2, 
         padx=10, 
@@ -108,6 +111,40 @@ class LoginWindow:
             self.entrada_senha.delete(0, 'end')
             self.entrada_senha.insert(0, self.senha_var.get())
             self.entrada_senha.configure(show='*')
+
+   
+
+
+    
+
+    def validar_login(self, usuario: str, senha: str) -> bool:
+        with sqlite3.connect('sistema_db.sqlite') as conn:
+            cursor = conn.cursor()
+            sql_query = '''
+             SELECT COUNT(*) FROM funcionario
+            WHERE usuario = ? AND senha = ?
+        '''
+            cursor.execute(sql_query, (usuario, senha))
+            result = cursor.fetchone()[0]
+            if result == 1:
+                return True
+            else:
+                return False
+             
+    def fazer_login(self):
+        self.usuario = self.entrada_login.get()
+        self.senha = self.entrada_senha.get()
+        if self.validar_login(self.usuario, self.senha):
+        # fazer login
+            messagebox.showinfo("Sucesso!", "Login realizado com sucesso")
+        else:
+        # exibir mensagem de erro
+            messagebox.showerror("Erro", "Usuário ou senha inválidos")
+
+
+
+
+
 
     
         

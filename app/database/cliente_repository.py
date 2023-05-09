@@ -4,14 +4,13 @@ from tkinter import messagebox
 
 
 def cadastrar_funcionario(usuario: str, senha: str):
-    with cursor_factory() as cursor:
-        sql_query = f'''
-        insert into funcionario (usuario, senha)
-        values ('{usuario}','{senha}')        
-        '''
-        cursor.execute(sql_query)
+    with sqlite3.connect('sistema_db.sqlite') as conn:
+        cursor = conn.cursor()
+        sql_query = "INSERT INTO funcionario (usuario, senha) VALUES (?, ?)"
+        cursor.execute(sql_query, (usuario, senha))
+        conn.commit()
         messagebox.showinfo("Sucesso!", "Cadastro realizado com sucesso")
-    conx.commit()
+
 
 
 
