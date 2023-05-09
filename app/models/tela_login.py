@@ -112,10 +112,6 @@ class LoginWindow:
             self.entrada_senha.delete(0, 'end')
             self.entrada_senha.insert(0, self.senha_var.get())
             self.entrada_senha.configure(show='*')
-
-   
-
-
     
 
     def validar_login(self, usuario: str, senha: str) -> bool:
@@ -144,14 +140,3 @@ class LoginWindow:
         else:
         
             messagebox.showerror("Erro", "Usuário ou senha inválidos")
-
-
-
-
-
-
-    
-        
-
-
-
