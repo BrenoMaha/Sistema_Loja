@@ -1,8 +1,11 @@
 import sqlite3
 
-def create_table_if_not_exists():
-    with sqlite3.connect('sistema_db.sqlite') as conn:
-        cursor = conn.cursor()
+class Database:
+    def __init__(self, db_file):
+        self.conn = sqlite3.connect(db_file)
+        self.cursor = self.conn.cursor()
+
+    def create_table_if_not_exists(self):
         sql_query = '''
         CREATE TABLE IF NOT EXISTS funcionario (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -10,13 +13,9 @@ def create_table_if_not_exists():
             senha TEXT NOT NULL
         );
         '''
-        cursor.execute(sql_query)
+        self.cursor.execute(sql_query)
 
-create_table_if_not_exists()
-
-def create_cliente_database():
-    with sqlite3.connect('sistema_db.sqlite') as conn:
-        cursor = conn.cursor()
+    def create_cliente_database(self):
         sql_query = '''
         CREATE TABLE IF NOT EXISTS cliente (
         id integer primary key autoincrement,
@@ -26,14 +25,9 @@ def create_cliente_database():
         email text not null
         );
         '''
+        self.cursor.execute(sql_query)
 
-        cursor.execute(sql_query)
-
-create_cliente_database()
-
-def create_produto_database():
-    with sqlite3.connect('sistema_db.sqlite') as conn:
-        cursor = conn.cursor()
+    def create_produto_database(self):
         sql_query = '''
         CREATE TABLE IF NOT EXISTS produto (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,8 +37,10 @@ def create_produto_database():
             quantidade INTEGER NOT NULL
         );
         '''
-        cursor.execute(sql_query)
-
-create_produto_database()
+        self.cursor.execute(sql_query)
 
 
+db = Database('sistema_db.sqlite')
+db.create_table_if_not_exists()
+db.create_cliente_database()
+db.create_produto_database()
